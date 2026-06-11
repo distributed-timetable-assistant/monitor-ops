@@ -1,0 +1,7 @@
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: grafana
+    files:
+      - datasources.yml

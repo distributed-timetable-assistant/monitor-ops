@@ -1,0 +1,7 @@
+resources:
+  - configs
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+  - persistent-volume-claim.yaml
+  - certificate.yaml

@@ -1,0 +1,46 @@
+name: status
+on: workflow_dispatch
+
+jobs:
+  stage-get-all:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONF }}
+          KUBE_CONTEXT: outi
+        with:
+          args: get ns,all,ing,secret,cm,certificate -A
+
+  stage-deployment-log:
+    continue-on-error: true
+    strategy:
+      matrix:
+        apps:
+          - monitor
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONF }}
+          KUBE_CONTEXT: outi
+        with:
+          args: -n ${{ matrix.apps }} logs deployments
+
+  stage-pod-describe:
+    continue-on-error: true
+    strategy:
+      matrix:
+        apps:
+          - monitor
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONF }}
+          KUBE_CONTEXT: outi
+        with:
+          args: -n ${{ matrix.apps }} describe pod

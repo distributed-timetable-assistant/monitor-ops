@@ -1,0 +1,19 @@
+name: rollout
+on: workflow_dispatch
+
+jobs:
+  stage-deployment-rollout:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      matrix:
+        apps:
+          - monitor
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONF }}
+          KUBE_CONTEXT: outi
+        with:
+          args: -n ${{ matrix.apps }} rollout restart deployment

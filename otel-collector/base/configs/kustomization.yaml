@@ -1,0 +1,7 @@
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: otel-collector
+    files:
+      - otel-config.yaml
