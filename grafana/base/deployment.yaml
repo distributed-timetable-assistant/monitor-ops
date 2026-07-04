@@ -27,15 +27,31 @@ spec:
               value: "false"
             - name: GF_SECURITY_ADMIN_USER
               value: "admin"
-            - name: GF_AUTH_PROXY_ENABLED
+            - name: GF_AUTH_GENERIC_OAUTH_ENABLED
               value: "true"
-            - name: GF_AUTH_PROXY_HEADER_NAME
-              value: X-Auth-Request-User
-            - name: GF_AUTH_PROXY_HEADER_PROPERTY
-              value: username
-            - name: GF_AUTH_PROXY_HEADERS
-              value: Email:X-Auth-Request-Email
-            - name: GF_AUTH_PROXY_AUTO_SIGN_UP
+            - name: GF_AUTH_GENERIC_OAUTH_NAME
+              value: "Ory"
+            - name: GF_AUTH_GENERIC_OAUTH_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: grafana
+                  key: OAUTH2_CLIENT_ID
+            - name: GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: grafana
+                  key: OAUTH2_CLIENT_SECRET
+            - name: GF_AUTH_GENERIC_OAUTH_AUTH_URL
+              value: "https://auth.outi.ir/oauth2/auth"
+            - name: GF_AUTH_GENERIC_OAUTH_TOKEN_URL
+              value: "http://hydra-public.iam.svc.cluster.local:4444/oauth2/token"
+            - name: GF_AUTH_GENERIC_OAUTH_API_URL
+              value: "http://hydra-public.iam.svc.cluster.local:4444/userinfo"
+            - name: GF_AUTH_GENERIC_OAUTH_SCOPES
+              value: "openid email profile"
+            - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH
+              value: "contains(realm_access.roles[*], 'admin') && 'Admin' || 'Viewer'"
+            - name: GF_AUTH_GENERIC_OAUTH_ALLOW_SIGN_UP
               value: "true"
           volumeMounts:
             - name: config
