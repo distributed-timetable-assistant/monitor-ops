@@ -27,6 +27,32 @@ spec:
               value: "false"
             - name: GF_SECURITY_ADMIN_USER
               value: "admin"
+            - name: GF_AUTH_GENERIC_OAUTH_ENABLED
+              value: "true"
+            - name: GF_AUTH_GENERIC_OAUTH_NAME
+              value: "Ory"
+            - name: GF_AUTH_GENERIC_OAUTH_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: grafana
+                  key: OAUTH2_CLIENT_ID
+            - name: GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: grafana
+                  key: OAUTH2_CLIENT_SECRET
+            - name: GF_AUTH_GENERIC_OAUTH_AUTH_URL
+              value: "https://auth.outi.ir/oauth2/auth"
+            - name: GF_AUTH_GENERIC_OAUTH_TOKEN_URL
+              value: "http://hydra-public.iam.svc.cluster.local:4444/oauth2/token"
+            - name: GF_AUTH_GENERIC_OAUTH_API_URL
+              value: "http://hydra-public.iam.svc.cluster.local:4444/userinfo"
+            - name: GF_AUTH_GENERIC_OAUTH_SCOPES
+              value: "openid email profile"
+            - name: GF_AUTH_GENERIC_OAUTH_ALLOW_SIGN_UP
+              value: "true"
+            - name: GF_SERVER_ROOT_URL
+              value: "https://grafana.outi.ir"
           volumeMounts:
             - name: config
               mountPath: /etc/grafana/provisioning/datasources/datasources.yml
