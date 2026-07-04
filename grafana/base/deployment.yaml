@@ -27,6 +27,16 @@ spec:
               value: "false"
             - name: GF_SECURITY_ADMIN_USER
               value: "admin"
+            - name: GF_AUTH_PROXY_ENABLED
+              value: "true"
+            - name: GF_AUTH_PROXY_HEADER_NAME
+              value: X-Auth-Request-User
+            - name: GF_AUTH_PROXY_HEADER_PROPERTY
+              value: username
+            - name: GF_AUTH_PROXY_HEADERS
+              value: Email:X-Auth-Request-Email
+            - name: GF_AUTH_PROXY_AUTO_SIGN_UP
+              value: "true"
           volumeMounts:
             - name: config
               mountPath: /etc/grafana/provisioning/datasources/datasources.yml
