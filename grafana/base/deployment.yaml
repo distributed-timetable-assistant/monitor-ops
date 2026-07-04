@@ -33,6 +33,11 @@ spec:
               subPath: datasources.yml
             - mountPath: /var/lib/grafana
               name: data
+            - name: config
+              mountPath: /etc/grafana/provisioning/dashboards/dashboards.yml
+              subPath: dashboards.yml
+            - name: config
+              mountPath: /var/lib/grafana/dashboards/default-dashboards/kubernetes-dashboard.json
           resources:
             limits:
               cpu: 500m

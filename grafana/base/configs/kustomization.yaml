@@ -5,3 +5,5 @@ configMapGenerator:
   - name: grafana
     files:
       - datasources.yml
+      - kubernetes-dashboard.json
+      - dashboards.yml
