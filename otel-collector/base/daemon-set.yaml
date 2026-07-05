@@ -33,10 +33,10 @@ spec:
           resources:
             limits:
               cpu: 500m
-              memory: 512Mi
+              memory: 256Mi
             requests:
-              cpu: 0m
-              memory: 0Mi
+              cpu: 100m
+              memory: 128Mi
       volumes:
         - name: otel-config
           configMap:
