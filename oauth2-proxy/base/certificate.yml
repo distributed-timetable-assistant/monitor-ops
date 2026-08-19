@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: oauth2-proxy
+spec:
+  dnsNames:
+    - auth.monitor.outi.ir
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt
+  secretName: oauth2-proxy-tls

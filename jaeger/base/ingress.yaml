@@ -2,10 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: jaeger
-  namespace: star
   annotations:
-    nginx.ingress.kubernetes.io/auth-url: http://oauth2-proxy-jaeger.iam.svc.cluster.local:4180/oauth2/jaeger/auth
-    nginx.ingress.kubernetes.io/auth-signin: https://jaeger.login.outi.ir/oauth2/jaeger/start?rd=$scheme://$host$request_uri
+    nginx.ingress.kubernetes.io/auth-url: http://oauth2-proxy:4180/auth
+    nginx.ingress.kubernetes.io/auth-signin: https://auth.monotor.outi.ir/start?rd=$scheme://$host$request_uri
     nginx.ingress.kubernetes.io/auth-response-headers: X-Auth-Request-User,X-Auth-Request-Email,Authorization
 spec:
   ingressClassName: nginx
@@ -23,4 +22,4 @@ spec:
               service:
                 name: jaeger
                 port:
-                  number: 16686
+                  name: web
