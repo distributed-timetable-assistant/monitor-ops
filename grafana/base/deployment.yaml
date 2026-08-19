@@ -44,9 +44,9 @@ spec:
             - name: GF_AUTH_GENERIC_OAUTH_AUTH_URL
               value: "https://auth.outi.ir/oauth2/auth"
             - name: GF_AUTH_GENERIC_OAUTH_TOKEN_URL
-              value: "http://hydra-public.iam.svc.cluster.local:4444/oauth2/token"
+              value: "http://hydra.iam.svc.cluster.local:4444/oauth2/token"
             - name: GF_AUTH_GENERIC_OAUTH_API_URL
-              value: "http://hydra-public.iam.svc.cluster.local:4444/userinfo"
+              value: "http://hydra.iam.svc.cluster.local:4444/userinfo"
             - name: GF_AUTH_GENERIC_OAUTH_SCOPES
               value: "openid email profile"
             - name: GF_AUTH_GENERIC_OAUTH_ALLOW_SIGN_UP
