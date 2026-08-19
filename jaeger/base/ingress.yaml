@@ -4,7 +4,7 @@ metadata:
   name: jaeger
   annotations:
     nginx.ingress.kubernetes.io/auth-url: http://oauth2-proxy:4180/auth
-    nginx.ingress.kubernetes.io/auth-signin: https://auth.monotor.outi.ir/start?rd=$scheme://$host$request_uri
+    nginx.ingress.kubernetes.io/auth-signin: https://auth.monitor.outi.ir/start?rd=$scheme://$host$request_uri
     nginx.ingress.kubernetes.io/auth-response-headers: X-Auth-Request-User,X-Auth-Request-Email,Authorization
 spec:
   ingressClassName: nginx
