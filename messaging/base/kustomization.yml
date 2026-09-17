@@ -1,0 +1,4 @@
+resources:
+  - redpanda.yml
+  - certificate.yml
+  - ingress.yml

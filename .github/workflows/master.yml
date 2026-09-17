@@ -12,6 +12,7 @@ jobs:
           - prometheus
           - jaeger
           - oauth2-proxy
+          - messaging
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

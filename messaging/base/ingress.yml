@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redpanda
+  annotations:
+    nginx.ingress.kubernetes.io/auth-url: http://oauth2-proxy.monitor.svc.cluster.local:4180/oauth2/auth
+    nginx.ingress.kubernetes.io/auth-signin: https://auth.monitor.outi.ir/oauth2/start?rd=$scheme://$host$request_uri
+    nginx.ingress.kubernetes.io/auth-response-headers: X-Auth-Request-User,X-Auth-Request-Email,Authorization
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - redpanda-console.outi.ir
+      secretName: redpanda-tls
+  rules:
+    - host: redpanda-console.outi.ir
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: redpanda-console
+                port:
+                  name: http

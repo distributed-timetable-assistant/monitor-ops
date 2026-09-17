@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: redpanda
+spec:
+  secretName: redpanda-tls
+  dnsNames:
+    - "redpanda-console.outi.ir"
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
