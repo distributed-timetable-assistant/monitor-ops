@@ -7,3 +7,5 @@ spec:
   clusterSpec:
     statefulset:
       replicas: 1
+    external:
+      enabled: false
